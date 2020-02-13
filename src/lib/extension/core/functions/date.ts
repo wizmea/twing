@@ -25,8 +25,10 @@ export function date(env: TwingEnvironment, date: Date | DateTime | Duration | n
         let core = env.getCoreExtension();
 
         //determine the locale
-        if (locale !== false && locale !== null) {
-            date = date.setLocale(locale);
+        if (date instanceof DateTime) {
+            if (locale !== false && locale !== null) {
+                date = date.setLocale(locale);
+            }
         }
 
         // determine the timezone

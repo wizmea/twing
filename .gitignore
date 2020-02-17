@@ -1,6 +1,6 @@
 .idea
 .nyc_output
-#dist
+dist
 coverage
 docs/.bundle
 docs/_site

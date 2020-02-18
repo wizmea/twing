@@ -1,5 +1,6 @@
 import {TwingEnvironment} from "../../../environment";
 import {DateTime, Duration} from "luxon";
+import {Settings} from "luxon"
 import {modifyDate} from "../../../helpers/modify-date";
 import {TwingErrorRuntime} from "../../../error/runtime";
 import {formatDateTime} from "../../../helpers/format-date-time";
@@ -27,7 +28,7 @@ export function date(env: TwingEnvironment, date: Date | DateTime | Duration | n
         //determine the locale
         if (date instanceof DateTime) {
             if (locale !== false && locale !== null) {
-                date = date.setLocale(locale);
+                Settings.defaultLocale = locale
             }
         }
 

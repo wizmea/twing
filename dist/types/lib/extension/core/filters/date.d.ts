@@ -11,7 +11,8 @@ import { DateTime, Duration } from "luxon";
  * @param {DateTime|Duration|string} date A date
  * @param {string|null} format The target format, null to use the default
  * @param {string|null|boolean} timezone The target timezone, null to use the default, false to leave unchanged
+ * @param {string|null|boolean} locale The target locale, null to use the default, false to leave unchanged
  *
  * @return {Promise<string>} The formatted date
  */
-export declare function date(env: TwingEnvironment, date: DateTime | Duration | string, format?: string, timezone?: string | null | false, locale?: string | false): Promise<string>;
+export declare function date(env: TwingEnvironment, date: DateTime | Duration | string, format?: string, timezone?: string | null | false, locale?: string | null | false): Promise<string>;

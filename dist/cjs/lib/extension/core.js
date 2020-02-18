@@ -311,7 +311,8 @@ class TwingExtensionCore extends extension_1.TwingExtension {
             }),
             new filter_2.TwingFilter('date', date_1.date, [
                 { name: 'format', defaultValue: null },
-                { name: 'timezone', defaultValue: null }
+                { name: 'timezone', defaultValue: null },
+                { name: 'locale', defaultValue: null }
             ], {
                 needs_environment: true
             }),
@@ -441,7 +442,8 @@ class TwingExtensionCore extends extension_1.TwingExtension {
             ]),
             new function_1.TwingFunction('date', date_2.date, [
                 { name: 'date' },
-                { name: 'timezone' }
+                { name: 'timezone' },
+                { name: 'locale' }
             ], {
                 needs_environment: true
             }),

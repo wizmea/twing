@@ -309,7 +309,8 @@ export class TwingExtensionCore extends TwingExtension {
             }),
             new TwingFilter('date', date, [
                 { name: 'format', defaultValue: null },
-                { name: 'timezone', defaultValue: null }
+                { name: 'timezone', defaultValue: null },
+                { name: 'locale', defaultValue: null }
             ], {
                 needs_environment: true
             }),
@@ -439,7 +440,8 @@ export class TwingExtensionCore extends TwingExtension {
             ]),
             new TwingFunction('date', dateFunction, [
                 { name: 'date' },
-                { name: 'timezone' }
+                { name: 'timezone' },
+                { name: 'locale' }
             ], {
                 needs_environment: true
             }),

@@ -15,10 +15,11 @@ import {date as createDate} from "../functions/date";
  * @param {DateTime|Duration|string} date A date
  * @param {string|null} format The target format, null to use the default
  * @param {string|null|boolean} timezone The target timezone, null to use the default, false to leave unchanged
+ * @param {string|null|boolean} locale The target locale, null to use the default, false to leave unchanged
  *
  * @return {Promise<string>} The formatted date
  */
-export function date(env: TwingEnvironment, date: DateTime | Duration | string, format: string = null, timezone: string | null | false = null, locale: string | false = null): Promise<string> {
+export function date(env: TwingEnvironment, date: DateTime | Duration | string, format: string = null, timezone: string | null | false = null, locale: string | null | false = null): Promise<string> {
     if (format === null) {
         let coreExtension = env.getCoreExtension();
 

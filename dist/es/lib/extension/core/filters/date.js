@@ -16,13 +16,13 @@ import { date as createDate } from "../functions/date";
  *
  * @return {Promise<string>} The formatted date
  */
-export function date(env, date, format = null, timezone = null) {
+export function date(env, date, format = null, timezone = null, locale = null) {
     if (format === null) {
         let coreExtension = env.getCoreExtension();
         let formats = coreExtension.getDateFormat();
         format = date instanceof Duration ? formats[1] : formats[0];
     }
-    return createDate(env, date, timezone).then((date) => {
+    return createDate(env, date, timezone, locale).then((date) => {
         if (date instanceof Duration) {
             return Promise.resolve(formatDuration(date, format));
         }

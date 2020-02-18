@@ -18,7 +18,7 @@ import {date as createDate} from "../functions/date";
  *
  * @return {Promise<string>} The formatted date
  */
-export function date(env: TwingEnvironment, date: DateTime | Duration | string, format: string = null, timezone: string | null | false = null): Promise<string> {
+export function date(env: TwingEnvironment, date: DateTime | Duration | string, format: string = null, timezone: string | null | false = null, locale: string | false = null): Promise<string> {
     if (format === null) {
         let coreExtension = env.getCoreExtension();
 
@@ -27,7 +27,7 @@ export function date(env: TwingEnvironment, date: DateTime | Duration | string, 
         format = date instanceof Duration ? formats[1] : formats[0];
     }
 
-    return createDate(env, date, timezone).then((date) => {
+    return createDate(env, date, timezone, locale).then((date) => {
         if (date instanceof Duration) {
             return Promise.resolve(formatDuration(date, format));
         }

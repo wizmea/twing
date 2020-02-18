@@ -14,4 +14,4 @@ import { DateTime, Duration } from "luxon";
  *
  * @return {Promise<string>} The formatted date
  */
-export declare function date(env: TwingEnvironment, date: DateTime | Duration | string, format?: string, timezone?: string | null | false): Promise<string>;
+export declare function date(env: TwingEnvironment, date: DateTime | Duration | string, format?: string, timezone?: string | null | false, locale?: string | false): Promise<string>;

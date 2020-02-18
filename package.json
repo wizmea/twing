@@ -1,6 +1,6 @@
 {
   "author": "Eric MORAND <eric.morand@gmail.com>",
-  "name": "twing",
+  "name": "@wizmea/twing",
   "description": "First-class Twig engine for Node.js",
   "keywords": [
     "browser",
@@ -35,7 +35,7 @@
     "test:qc": "ts-node node_modules/tape/bin/tape 'test/tests/qc/**/test.ts' | tap-bail | tap-spec",
     "cover": "nyc npm run test",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "no-build": "npm run build:cjs && npm run build:es && npm run build:types",
+    "build": "npm run build:cjs && npm run build:es && npm run build:types",
     "build:cjs": "rimraf dist/cjs && tsc --project . --module commonjs --outDir dist/cjs",
     "build:es": "rimraf dist/es && tsc --project . --module es6 --outDir dist/es",
     "build:types": "rimraf dist/types && tsc --project . --declaration true --emitDeclarationOnly true --outDir dist/types",

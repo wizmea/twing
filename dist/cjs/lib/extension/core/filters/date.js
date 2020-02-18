@@ -18,13 +18,13 @@ const date_1 = require("../functions/date");
  *
  * @return {Promise<string>} The formatted date
  */
-function date(env, date, format = null, timezone = null) {
+function date(env, date, format = null, timezone = null, locale = null) {
     if (format === null) {
         let coreExtension = env.getCoreExtension();
         let formats = coreExtension.getDateFormat();
         format = date instanceof luxon_1.Duration ? formats[1] : formats[0];
     }
-    return date_1.date(env, date, timezone).then((date) => {
+    return date_1.date(env, date, timezone, locale).then((date) => {
         if (date instanceof luxon_1.Duration) {
             return Promise.resolve(format_duration_1.formatDuration(date, format));
         }

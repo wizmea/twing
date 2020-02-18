@@ -20,16 +20,14 @@ import {formatDateTime} from "../../../helpers/format-date-time";
  *
  * @returns {Promise<DateTime | Duration>}
  */
-export function date(env: TwingEnvironment, date: Date | DateTime | Duration | number | string, timezone: string | null | false = null, locale: string | false = null): Promise<DateTime | Duration> {
+export function date(env: TwingEnvironment, date: Date | DateTime | Duration | number | string, timezone: string | null | false = null, locale: string| null | false = null): Promise<DateTime | Duration> {
     let _do = (): DateTime | Duration => {
         let result: DateTime;
         let core = env.getCoreExtension();
 
         //determine the locale
-        if (date instanceof DateTime) {
-            if (locale !== false && locale !== null) {
-                Settings.defaultLocale = locale
-            }
+        if (locale !== null && locale !== false) {
+            Settings.defaultLocale = locale
         }
 
         // determine the timezone

@@ -1,4 +1,5 @@
 import { DateTime, Duration } from "luxon";
+import { Settings } from "luxon";
 import { modifyDate } from "../../../helpers/modify-date";
 import { TwingErrorRuntime } from "../../../error/runtime";
 import { formatDateTime } from "../../../helpers/format-date-time";
@@ -22,10 +23,8 @@ export function date(env, date, timezone = null, locale = null) {
         let result;
         let core = env.getCoreExtension();
         //determine the locale
-        if (date instanceof DateTime) {
-            if (locale !== false && locale !== null) {
-                date = date.setLocale(locale);
-            }
+        if (locale !== null && locale !== false) {
+            Settings.defaultLocale = locale;
         }
         // determine the timezone
         if (timezone !== false) {

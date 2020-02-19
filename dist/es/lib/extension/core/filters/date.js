@@ -1,4 +1,4 @@
-import { Duration } from "luxon";
+import { DateTime, Duration } from "luxon";
 import { formatDuration } from "../../../helpers/format-duration";
 import { formatDateTime } from "../../../helpers/format-date-time";
 import { date as createDate } from "../functions/date";
@@ -24,9 +24,53 @@ export function date(env, date, format = null, timezone = null, locale = null) {
         format = date instanceof Duration ? formats[1] : formats[0];
     }
     return createDate(env, date, timezone, locale).then((date) => {
+        let c = "";
         if (date instanceof Duration) {
-            return Promise.resolve(formatDuration(date, format));
+            c = formatDuration(date, format);
         }
-        return Promise.resolve(formatDateTime(date, format));
+        else if (date instanceof DateTime) {
+            c = formatDateTime(date, format);
+        }
+        if (locale != null && locale == 'fr') {
+            c = replaceAll(c);
+        }
+        return Promise.resolve(c);
     });
 }
+function replaceAll(str) {
+    str = replace(DAYS, str);
+    str = replace(MONTHS, str);
+    return str;
+}
+function replace(arr, str) {
+    if (typeof str == "number")
+        str = `${str}`;
+    Object.keys(arr).forEach(element => {
+        if (str.search(element) != -1) {
+            str = str.replace(element, arr[element]);
+        }
+    });
+    return str;
+}
+const DAYS = {
+    Monday: 'Lundi',
+    Tuesday: 'Mardi',
+    Wednesday: 'Mercredi',
+    Thursday: 'Jeudi',
+    Friday: 'Vendredi',
+    Saturday: 'Samedi',
+    Sunday: 'Dimanche'
+};
+const MONTHS = {
+    January: 'Janvier',
+    February: 'Février',
+    March: 'Mars',
+    April: 'Avril',
+    May: 'Mai',
+    June: 'Juin',
+    July: 'Juillet',
+    August: 'Août',
+    September: 'Septembre',
+    November: 'Novembre',
+    December: 'Décembre'
+};

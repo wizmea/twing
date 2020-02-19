@@ -29,10 +29,55 @@ export function date(env: TwingEnvironment, date: DateTime | Duration | string, 
     }
 
     return createDate(env, date, timezone, locale).then((date) => {
+        let c = ""
         if (date instanceof Duration) {
-            return Promise.resolve(formatDuration(date, format));
+            c = formatDuration(date, format)
+        }else if (date instanceof DateTime){
+            c = formatDateTime(date, format)
         }
-
-        return Promise.resolve(formatDateTime(date, format));
+        if (locale != null && locale == 'fr') {
+            c = replaceAll(c)
+        }
+        return Promise.resolve(c);
     });
+}
+
+function replaceAll(str: string) {
+    str = replace(DAYS, str)
+    str =  replace(MONTHS, str)
+    return str
+}
+
+function replace (arr: { [key: string]: string }, str: string) {
+    if (typeof str == "number") str = `${str}`
+    Object.keys(arr).forEach(element => {
+        if (str.search(element) != -1) {
+            str = str.replace(element, arr[element])
+        }
+    });
+    return str
+}
+
+const DAYS : { [key: string]: string } = {
+    Monday: 'Lundi',
+    Tuesday: 'Mardi',
+    Wednesday: 'Mercredi',
+    Thursday: 'Jeudi',
+    Friday: 'Vendredi',
+    Saturday: 'Samedi',
+    Sunday: 'Dimanche'
+}
+
+const MONTHS : { [key: string]: string; } = {
+    January: 'Janvier',
+    February: 'Février',
+    March: 'Mars',
+    April: 'Avril',
+    May: 'Mai',
+    June: 'Juin',
+    July: 'Juillet',
+    August: 'Août',
+    September: 'Septembre',
+    November: 'Novembre',
+    December: 'Décembre'
 }

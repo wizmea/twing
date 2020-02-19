@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const luxon_1 = require("luxon");
+const luxon_2 = require("luxon");
 const modify_date_1 = require("../../../helpers/modify-date");
 const runtime_1 = require("../../../error/runtime");
 const format_date_time_1 = require("../../../helpers/format-date-time");
@@ -24,10 +25,8 @@ function date(env, date, timezone = null, locale = null) {
         let result;
         let core = env.getCoreExtension();
         //determine the locale
-        if (date instanceof luxon_1.DateTime) {
-            if (locale !== false && locale !== null) {
-                date = date.setLocale(locale);
-            }
+        if (locale !== null && locale !== false) {
+            luxon_2.Settings.defaultLocale = locale;
         }
         // determine the timezone
         if (timezone !== false) {
